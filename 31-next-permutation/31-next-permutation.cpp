@@ -22,7 +22,9 @@ public:
             }
             // 3. & 4.
             swap(nums[k], nums[l]);
-            sort(nums.begin()+k+1, nums.end());
+            // sort(nums.begin()+k+1, nums.end());
+            reverse(nums.begin()+k+1, nums.end());
+
         }
     }
 };
@@ -31,6 +33,6 @@ public:
 1. Find the largest index k such that nums[k] < nums[k + 1]. 
 1-1) If no such index exists, just reverse nums and done.
 2. Find the largest index l > k such that nums[k] < nums[l].
-3. Swap nums[k] and nums[l].
-4. Reverse the sub-array nums[k + 1:].
+3. Swap nums[k] and nums[l]
+4. Sort or Reverse sub-array nums[k + 1:]
 */
