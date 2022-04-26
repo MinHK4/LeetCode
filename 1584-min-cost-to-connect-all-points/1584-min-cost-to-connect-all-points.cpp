@@ -1,10 +1,14 @@
-struct edge{
+class Edge{
+public: 
     int src, dst, cost;
 };
 
-bool sortby(edge a, edge b){
-    return a.cost < b.cost;
-}
+class sortby{
+public:
+    bool operator()(const Edge a, const Edge b){
+        return a.cost < b.cost;
+    }  
+};
 
 class Solution {
 private:
@@ -33,18 +37,18 @@ public:
     int minCostConnectPoints(vector<vector<int>>& points) {
         
         // Graph edge info and sort by cost
-        vector<edge> v;
+        vector<Edge> v;
         int nums = points.size();
         for(int i=0; i<nums; i++){
             for(int j=i+1; j<nums; j++){
-                edge temp;
+                Edge temp;
                 temp.src = i;
                 temp.dst = j;
                 temp.cost = abs(points[i][0]-points[j][0]) + abs(points[i][1] - points[j][1]);
                 v.push_back(temp);
             }
         }
-        sort(v.begin(), v.end(), sortby);
+        sort(v.begin(), v.end(), sortby());
         
         // Disjoint Set + MST
         rank.resize(nums, 0);
@@ -53,7 +57,7 @@ public:
             parent[i] = i;
         
         int ans = 0;
-        for(edge x : v){
+        for(Edge x : v){
             int roota = Find(x.src);
             int rootb = Find(x.dst);
             if(roota == rootb)
