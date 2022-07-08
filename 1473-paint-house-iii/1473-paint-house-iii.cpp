@@ -40,5 +40,10 @@ public:
 
 /*
 DP Top-Down Approach
-DP[idx][left][last_color] : i번째 집에서 taget이 left만큼 남아있고 마지막 색깔이 last_color였을 때 페인트 드는데 필요한 최소값
+
+DP[idx][left][last_color] 
+: i번째 집에서 taget이 left만큼 남아있고 이전에 들렀던 집의 색깔이 last_color였을 때 페인트 칠하는데 필요한 최소값
+
+last-color까지 총 3차원 DP여야 하는 이유는 같은 위치에 같은 left의 경우라고 하더라도
+이전까지 어떤 방식으로 칠해왔는지가 다를 수 있기 때문에 각각의 경우를 다 구분하고 통합해 최소값을 만들기 위해서 필요함
 */
