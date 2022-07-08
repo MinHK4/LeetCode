@@ -31,7 +31,6 @@ public:
     
     int minCost(vector<int>& houses, vector<vector<int>>& cost, int m, int n, int target) {
         
-        
         int res = dfs(houses, cost, 0, target, 0);
         
         return res > 1000000 ? -1 : res;
@@ -46,4 +45,18 @@ DP[idx][left][last_color]
 
 last-color까지 총 3차원 DP여야 하는 이유는 같은 위치에 같은 left의 경우라고 하더라도
 이전까지 어떤 방식으로 칠해왔는지가 다를 수 있기 때문에 각각의 경우를 다 구분하고 통합해 최소값을 만들기 위해서 필요함
+
+----
+반례)
+
+0,0,0,1]
+[[1,5],[4,1],[1,3],[4,4]]
+4
+2
+4
+
+DP 탐색하고 저장해놓는데 last_clr까지 고려해주지 않으면 
+idx, left는 같지만 탐색이 불가능한 경우가 우선 탐색되고
+그 다음에 가능한 경우가 탐색되려고 해도 Memoization에서 이미 해당 경로를 탐색했음으로 처리하기 때문에
+탐색 자체를 할 수 없게 됨!! 
 */
